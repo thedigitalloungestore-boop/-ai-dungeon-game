@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Dungeon Lite</title>
+<style>
+body { font-family: Arial; background:#111; color:#eee; padding:10px; }
+#log { height:60vh; overflow:auto; border:1px solid #444; padding:10px; }
+input { width:75%; padding:10px; }
+button { padding:10px; }
+</style>
+</head>
+<body>
+
+<h2>Dungeon Master Game</h2>
+<div id="log">You wake in a dark dungeon...</div>
+
+<input id="input" placeholder="What do you do?">
+<button onclick="send()">Send</button>
+
+<script>
+let log = document.getElementById("log");
+
+function add(text){
+  log.innerHTML += "<br><br>" + text;
+  log.scrollTop = log.scrollHeight;
+}
+
+function send(){
+  let input = document.getElementById("input").value;
+  if(!input) return;
+
+  add("🧍 You: " + input);
+
+  // Simple fake DM logic (we'll upgrade later with AI)
+  let responses = [
+    "The dungeon shifts around your action...",
+    "Something unseen reacts in the darkness...",
+    "Your choice echoes through the stone halls...",
+    "A hidden path reveals itself..."
+  ];
+
+  let reply = responses[Math.floor(Math.random()*responses.length)];
+  add("🧙 DM: " + reply);
+
+  document.getElementById("input").value = "";
+}
+</script>
+
+</body>
+</html>
